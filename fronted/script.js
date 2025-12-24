@@ -1,5 +1,5 @@
 async function fetchData() {
-    const response = await fetch('https://mausamkumari.pythonanywhere.com/api/data');
+    const response = await fetch('https://anushrimishra.pythonanywhere.com/api/data');
     const data = await response.json();
   
     const years = ['2022', '2023', '2024'];
