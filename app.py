@@ -12,7 +12,7 @@ def home():
 
 @app.route('/api/data')
 def get_language_trends():
-    file_name = "converted.csv"
+    file_name = "/home/Anushri/converted.csv"
 
     # df → we'll treat this as raw data
     df = []
