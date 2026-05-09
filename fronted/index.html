@@ -3,27 +3,128 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Language Trends Dashboard</title>
+  <title>Language Trends Dashboard · Stack Overflow 2022–2024</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <link rel="stylesheet" href="style.css" />
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
-  <header>
-    <h1>🚀 Language Trends Dashboard</h1>
-    <p>Explore the top programming languages based on StackOverflow data (2022–2024)</p>
+  <!-- Background grid -->
+  <div class="bg-grid"></div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <div>
+          <h1>LangTrends</h1>
+          <p class="subtitle">Stack Overflow Data Analysis · 2022–2024</p>
+        </div>
+      </div>
+      <div class="header-meta">
+        <span class="badge">65K+ Questions Analyzed</span>
+        <span class="badge">Real Data</span>
+      </div>
+    </div>
   </header>
 
-  <main class="container">
-    <section class="card">
-      <canvas id="languageChart"></canvas>
+  <!-- Stats bar -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <span class="stat-number" id="totalLangs">20</span>
+      <span class="stat-label">Languages Tracked</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-number">#1</span>
+      <span class="stat-label">Python Dominates</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-number" id="topGrowth">TypeScript</span>
+      <span class="stat-label">Notable Growth</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-number">3 Yrs</span>
+      <span class="stat-label">Time Range</span>
+    </div>
+  </div>
 
-    </section>
+  <!-- Main content -->
+  <main class="main">
+
+    <!-- Controls -->
+    <div class="controls-bar">
+      <div class="chart-tabs">
+        <button class="tab-btn active" data-chart="line">— Line Trend</button>
+        <button class="tab-btn" data-chart="bar">▐ Bar Compare</button>
+        <button class="tab-btn" data-chart="radar">◎ Radar View</button>
+      </div>
+      <div class="filter-group">
+        <label>Show Top:</label>
+        <select id="topN">
+          <option value="5">5 Languages</option>
+          <option value="10" selected>10 Languages</option>
+          <option value="15">15 Languages</option>
+          <option value="20">20 Languages</option>
+        </select>
+        <label style="margin-left:1rem">Year:</label>
+        <select id="yearFilter">
+          <option value="all" selected>All Years</option>
+          <option value="2022">2022</option>
+          <option value="2023">2023</option>
+          <option value="2024">2024</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Chart section -->
+    <div class="chart-card main-chart-card">
+      <div class="card-header">
+        <h2 id="mainChartTitle">Programming Language Popularity Trend (2022–2024)</h2>
+        <span class="card-tag">Stack Overflow Questions · Normalized</span>
+      </div>
+      <div class="chart-wrap">
+        <canvas id="mainChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Bottom row -->
+    <div class="bottom-grid">
+
+      <!-- Ranking table -->
+      <div class="chart-card">
+        <div class="card-header">
+          <h2>2024 Rankings</h2>
+          <span class="card-tag">By Activity Score</span>
+        </div>
+        <div class="rank-table" id="rankTable"></div>
+      </div>
+
+      <!-- Year-over-year change -->
+      <div class="chart-card">
+        <div class="card-header">
+          <h2>Year-over-Year Δ</h2>
+          <span class="card-tag">2023 → 2024 Change</span>
+        </div>
+        <div class="chart-wrap small-chart">
+          <canvas id="deltaChart"></canvas>
+        </div>
+      </div>
+
+    </div>
+
   </main>
 
-  <div class="loader" id="loader">Loading chart...</div>
+  <footer class="footer">
+    <p>Built by <strong>Anushri Mishra</strong> · B.Tech, Sitare University (SRMU), Lucknow · Data Source: Stack Overflow</p>
+    <p>Tech Stack: <span class="mono">Python · Flask · Chart.js · HTML5 · CSS3 · Vanilla JS</span></p>
+  </footer>
 
-  <script src="script.js" defer></script>
-
+  <script src="script.js"></script>
 </body>
 </html>
